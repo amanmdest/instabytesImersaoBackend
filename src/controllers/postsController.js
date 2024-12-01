@@ -20,12 +20,10 @@ export async function createPost(req, res) {
 
 export async function uploadImage(req, res) {
     const post = {
-        descricao: "",
+        description: "",
         imgUrl: req.file.originalname,
         alt: ""
     };
-    // console.log(JSON.express(req)) 
-    // console.log(req.body) 
     try {
         const createdPost = await modelPost(post);
         const updatedImage = `uploads/${createdPost.insertedId}.png`
@@ -42,10 +40,10 @@ export async function updatePost(req, res) {
     const urlImage = `http://localhost:3000/${id}.png`
     try {
         const imgBuffer = fs.readFileSync(`uploads/${id}.png`)
-        const descricao = await generateDescription(imgBuffer)
+        const description = await generateDescription(imgBuffer)
         const post = {
             img_url: urlImage,
-            descricao: descricao,
+            description: description,
             alt: req.body.alt
         }
         const createdPost = await modelPostUpdate(id, post);

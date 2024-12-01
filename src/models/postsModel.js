@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { ObjectId } from "mongodb";
 import dbConnect from "../config/dbConfig.js";
 const conexao = await dbConnect(process.env.STRING_CONEXAO);
